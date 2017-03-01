@@ -1,5 +1,13 @@
 # 함수와 클로저 (Closure)
 
+독립적으로 처리될 수 있는 것을 분리하여 구조화한 객체.
+
+## 함수의 이점
+
+* 동일 코드가 여러 번 실행될 때, 재작성이 필요가 없다.
+* 기능 단위로 함수화하게 되면, 가독성이 좋아진다.
+* 유지 보수 차원에서 이점이 있다.
+
 ## 함수의 정의
 
 func 키워드를 사용하여 함수를 정의한다.
@@ -101,6 +109,23 @@ func funcOuter(message: String) -> (String, String) -> String {
 ```
 
 기존의 ```(String) -> String```에서 ```(String, String) -> String```으로 변화했다. 두 파라미터를 받아 최종적으로 하나로 처리한다는 뜻이다.
+
+## 함수의 튜플 반환
+
+함수는 여러 개의 값을 반환할 수 있다.
+
+```swift
+func getIndvInfo() -> (Int, String) {
+  let height = 177
+  let name = "devhwi"
+  
+  return (height, name)
+}
+
+var info = getIndvInfo()
+info.0 // 177
+info.1 // "devhwi"
+```
 
 
 # 클로저 (Closure)
