@@ -14,21 +14,22 @@ class ListViewController : UITableViewController {
 //    var list = [MovieVO]()
     
     var dataset = [
-        ("해리포터7", "해리포터 마지막편", "2015-01-01", 9.77),
-        ("반지의 제왕: 왕의 귀환", "반지의 제왕 마지막편", "2013-05-28", 9.88),
-        ("너의 이름은", "키미노 나마에와", "2016-12-25", 8.66)
+        ("해리포터7", "해리포터 마지막편", "2015-01-01", 9.77, "darknight.jpg"),
+        ("반지의 제왕: 왕의 귀환", "반지의 제왕 마지막편", "2013-05-28", 9.88, "rain.jpg"),
+        ("너의 이름은", "키미노 나마에와", "2016-12-25", 8.66, "secret.jpg")
     ]
     
     lazy var list : [MovieVO] = {
         var datalist = [MovieVO]()
         
-        for (title, description, opendate, rating) in self.dataset {
+        for (title, description, opendate, rating, thumbnail) in self.dataset {
             let mvo = MovieVO()
             
             mvo.title = title
             mvo.description = description
             mvo.opendate = opendate
             mvo.rating = rating
+            mvo.thumbnail = thumbnail
             
             datalist.append(mvo)
         }
@@ -36,35 +37,9 @@ class ListViewController : UITableViewController {
         return datalist
     } ()
     
-//    override func viewDidLoad() {
-//        var mvo = MovieVO()
-//        mvo.title = "해리포터1"
-//        mvo.description = "해리포터와 마법사의 돌"
-//        mvo.opendate = "2010-01-01"
-//        mvo.rating = 9.87
-//        self.list.append(mvo)
-//        
-//        mvo = MovieVO()
-//        mvo.title = "해리포터2"
-//        mvo.description = "해리포터와 비밀의 방"
-//        mvo.opendate = "2011-01-01"
-//        mvo.rating = 9.99
-//        self.list.append(mvo)
-//        
-//        mvo = MovieVO()
-//        mvo.title = "해리포터3"
-//        mvo.description = "해리포터와 아즈카반의 죄수"
-//        mvo.opendate = "2012-01-01"
-//        mvo.rating = 7.49
-//        self.list.append(mvo)
-//        
-//        mvo = MovieVO()
-//        mvo.title = "해리포터4"
-//        mvo.description = "해리포터와 불의 잔"
-//        mvo.opendate = "2013-01-01"
-//        mvo.rating = 8.60
-//        self.list.append(mvo)
-//    }
+    override func viewDidLoad() {
+    
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 //        NSLog("\(self.list.count)")
@@ -76,22 +51,16 @@ class ListViewController : UITableViewController {
         // 주어진 행에 맞는 데이터 소스를 read
         let row = self.list[indexPath.row]
         
+        // ===== MovieCell을 이용한 케이스 시작
         // 테이블 셀 객체를 직접 생성하지 않고 대신 큐로부터 가져옴
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ListCell") as! MovieCell
         
-        // ----> 제목, 설명, 개봉일, 평점 값 세팅
-        // 레이블에 세팅될 값을 변수로 받음
-        let title = cell.viewWithTag(101) as? UILabel
-        let description = cell.viewWithTag(102) as? UILabel
-        let opendate = cell.viewWithTag(103) as? UILabel
-        let rating = cell.viewWithTag(104) as? UILabel
-        
-        // 각 레이블 변수에 할당
-        title?.text = row.title
-        description?.text = row.description
-        opendate?.text = row.opendate
-        rating?.text = "\(row.rating!)"
-        // <---- 제목, 설명, 개봉일, 평점 값 세팅
+        cell.title?.text = row.title
+        cell.desc?.text = row.description
+        cell.opendate?.text = row.opendate
+        cell.rating?.text = "\(row.rating!)"
+        cell.thumbnail?.image = UIImage(named: row.thumbnail!)
+        // ===== MovieCell을 이용한 케이스 끝
         
         return cell
     }
