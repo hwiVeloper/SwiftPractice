@@ -64,13 +64,20 @@ class ListViewController : UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        let row = self.list[indexPath.row]
-        
-        // 높이 조절. 기본 60 + 글자 30자 이상일 때마다 20씩 늘려준다.
-        let height = CGFloat(60 + (row.characters.count / 30) * 20)
-        
-        return height
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.estimatedRowHeight = 50 // 대강의 디폴트를 지정
+        self.tableView.rowHeight = UITableViewAutomaticDimension
     }
+
+    // =====> 셀프 리사이징을 위해 주석 처리
+//    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        
+//        let row = self.list[indexPath.row]
+//        
+//        // 높이 조절. 기본 60 + 글자 30자 이상일 때마다 20씩 늘려준다.
+//        let height = CGFloat(60 + (row.characters.count / 30) * 20)
+//        
+//        return height
+//    }
+    // <===== 셀프 리사이징을 위해 주석처리
 }
