@@ -9,9 +9,10 @@
 import Foundation
 import UIKit
 
-class DetailViewController : UIViewController {
+class DetailViewController : UIViewController, UIWebViewDelegate {
     
     @IBOutlet var wv: UIWebView!
+    @IBOutlet var spinner: UIActivityIndicatorView!
     
     // 목록에서 넘어온 영화 정보 변수
     var mvo : MovieVO!
@@ -53,5 +54,33 @@ class DetailViewController : UIViewController {
             alert.addAction(cancel)
             self.present(alert, animated: false, completion: nil)
         }
+    }
+    
+    // 웹 뷰가 웹페이지를 읽어들이기 시작할 때 호출
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        // 인디케이터 뷰의 애니메이션을 실행
+        self.spinner.startAnimating()
+    }
+    
+    // 웹 뷰가 웹페이지 로드를 완료했을 때
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        // 인디케이터 뷰의 애니메이션을 중지
+        self.spinner.stopAnimating()
+    }
+    
+    // 웹 뷰가 웹페이지 로드를 실패했을 때
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        self.spinner.stopAnimating()
+        
+        // 경고창으로 오류메세지를 띄운다
+        let alert = UIAlertController(title: "오류", message: "페이지를 읽어오지 못했습니다.", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "확인", style: .cancel) {
+            (_) in
+            // 이전 페이지로 돌려보낸다.
+            _ = self.navigationController?.popViewController(animated: true)
+        }
+        
+        alert.addAction(cancel)
+        self.present(alert, animated: false, completion: nil)
     }
 }
