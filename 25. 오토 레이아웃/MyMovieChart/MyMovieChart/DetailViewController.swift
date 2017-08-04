@@ -18,7 +18,7 @@ class DetailViewController : UIViewController, UIWebViewDelegate {
     var mvo : MovieVO!
     
     override func viewDidLoad() {
-        NSLog("linkUrl = \(self.mvo?.detail), title=\(self.mvo?.title)")
+//        NSLog("linkUrl = \(self.mvo?.detail), title=\(self.mvo?.title)")
         
         // navigation bar 제목에 값을 세팅
         let navbar = self.navigationItem
