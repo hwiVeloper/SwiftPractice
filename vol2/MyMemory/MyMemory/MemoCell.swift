@@ -9,16 +9,8 @@
 import UIKit
 
 class MemoCell: UITableViewCell {
-
-//    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        // Initialization code
-//    }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
-
+    @IBOutlet var subject: UILabel! // 제목
+    @IBOutlet var contents: UILabel! // 내용
+    @IBOutlet var regdate: UILabel! // 등록일자
+    @IBOutlet var img: UIImageView! // 이미지
 }
