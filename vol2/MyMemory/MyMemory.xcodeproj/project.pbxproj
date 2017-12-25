@@ -13,6 +13,7 @@
 		E54B97491FD184640075706C /* MyMemory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E54B97471FD184640075706C /* MyMemory.xcdatamodeld */; };
 		E54B974B1FD184640075706C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E54B974A1FD184640075706C /* Assets.xcassets */; };
 		E54B974E1FD184640075706C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E54B974C1FD184640075706C /* LaunchScreen.storyboard */; };
+		E599E9E31FF11CB6004FB430 /* fountainpen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E599E9E21FF11CB6004FB430 /* fountainpen@2x.png */; };
 		E5CF245F1FD19F2700910C8A /* MemoListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CF245E1FD19F2700910C8A /* MemoListVC.swift */; };
 		E5CF24651FD19FBF00910C8A /* MemoFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CF24641FD19FBF00910C8A /* MemoFormVC.swift */; };
 		E5CF24671FD19FD800910C8A /* MemoReadVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CF24661FD19FD800910C8A /* MemoReadVC.swift */; };
@@ -29,6 +30,7 @@
 		E54B974A1FD184640075706C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E54B974D1FD184640075706C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E54B974F1FD184640075706C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E599E9E21FF11CB6004FB430 /* fountainpen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fountainpen@2x.png"; sourceTree = "<group>"; };
 		E5CF245E1FD19F2700910C8A /* MemoListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListVC.swift; sourceTree = "<group>"; };
 		E5CF24641FD19FBF00910C8A /* MemoFormVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoFormVC.swift; sourceTree = "<group>"; };
 		E5CF24661FD19FD800910C8A /* MemoReadVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoReadVC.swift; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 		E54B97341FD184640075706C = {
 			isa = PBXGroup;
 			children = (
+				E599E9E41FF11CBB004FB430 /* Resources */,
 				E54B973F1FD184640075706C /* MyMemory */,
 				E54B973E1FD184640075706C /* Products */,
 			);
@@ -80,6 +83,14 @@
 				E5CF246A1FD1A06400910C8A /* MemoData.swift */,
 			);
 			path = MyMemory;
+			sourceTree = "<group>";
+		};
+		E599E9E41FF11CBB004FB430 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E599E9E21FF11CB6004FB430 /* fountainpen@2x.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +154,7 @@
 			files = (
 				E54B974E1FD184640075706C /* LaunchScreen.storyboard in Resources */,
 				E54B974B1FD184640075706C /* Assets.xcassets in Resources */,
+				E599E9E31FF11CB6004FB430 /* fountainpen@2x.png in Resources */,
 				E54B97461FD184640075706C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

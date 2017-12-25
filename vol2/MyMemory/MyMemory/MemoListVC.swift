@@ -50,6 +50,16 @@ class MemoListVC: UITableViewController {
     
     // 행을 선택했을 때 호출되는 메서드, 행 정보는 indexPath에 담겨 전달된다.
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //
+        // 1. memolist 배열에서 선택된 행에 맞는 데이터를 꺼낸다.
+        let row = self.appDelegate.memolist[indexPath.row]
+        
+        // 2. 상세 화면의 인스턴스를 생성한다.
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "MemoRead") as? MemoReadVC else {
+            return
+        }
+        
+        // 3. 값을 전달한 다음, 상세 화면으로 이동한다.
+        vc.param = row
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
