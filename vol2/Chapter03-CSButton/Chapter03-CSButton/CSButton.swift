@@ -27,6 +27,9 @@ class CSButton: UIButton {
         self.layer.borderWidth = 2 // 테두리두께
         self.layer.borderColor = UIColor.black.cgColor // 데투리색
         self.setTitle("버튼", for: .normal) // 기본 문구
+        
+        // 액션 메소드 지정
+        self.addTarget(self, action: #selector(counting(_:)), for: .touchUpInside)
     }
     
     override init(frame: CGRect) {
@@ -92,5 +95,11 @@ class CSButton: UIButton {
                     self.setTitle("Circle Button", for: .normal)
             }
         }
+    }
+    
+    // 버튼이 클릭된 횟수를 카운트하여 타이틀에 표시해 주는 함수
+    @objc func counting(_ sender: UIButton) {
+        sender.tag = sender.tag + 1
+        sender.setTitle("\(sender.tag) 번째 클릭", for: .normal)
     }
 }
