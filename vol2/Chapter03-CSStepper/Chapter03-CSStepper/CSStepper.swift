@@ -13,7 +13,7 @@ import UIKit
 // @IBInspectable : 정의한 속성을 인터페이스 빌더에서 설정할 수 있도록한다.
 
 @IBDesignable
-public class CSStepper: UIView {
+public class CSStepper: UIControl {
     public var leftBtn = UIButton(type: .system) // 좌버튼
     public var rightBtn = UIButton(type: .system) // 우버튼
     public var centerLabel = UILabel() // 중앙 레이블
@@ -22,6 +22,9 @@ public class CSStepper: UIView {
     public var value: Int = 0 { // Stepper의 현재값 저장할 변수
         didSet { // 프로퍼티 값이 바뀌면 자동으로 호출
             self.centerLabel.text = String(value)
+            
+            // 이 클래스 사용하는 객체들에게 valueChanged이벤트 신호를 보내준다.
+            self.sendActions(for: .valueChanged)
         }
     }
     
