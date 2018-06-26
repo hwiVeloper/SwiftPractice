@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E50308FF20E2A26300B3EE1C /* CSLogButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50308FE20E2A26300B3EE1C /* CSLogButton.swift */; };
+		E503090120E2A35D00B3EE1C /* button-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = E503090020E2A35D00B3EE1C /* button-bg.png */; };
+		E503090420E2A4F600B3EE1C /* memo-background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E503090220E2A4F500B3EE1C /* memo-background@2x.png */; };
+		E503090520E2A4F600B3EE1C /* warning-icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E503090320E2A4F600B3EE1C /* warning-icon-60@2x.png */; };
 		E54B97411FD184640075706C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B97401FD184640075706C /* AppDelegate.swift */; };
 		E54B97431FD184640075706C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B97421FD184640075706C /* ViewController.swift */; };
 		E54B97461FD184640075706C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E54B97441FD184640075706C /* Main.storyboard */; };
@@ -22,6 +26,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E50308FE20E2A26300B3EE1C /* CSLogButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSLogButton.swift; sourceTree = "<group>"; };
+		E503090020E2A35D00B3EE1C /* button-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-bg.png"; sourceTree = "<group>"; };
+		E503090220E2A4F500B3EE1C /* memo-background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "memo-background@2x.png"; sourceTree = "<group>"; };
+		E503090320E2A4F600B3EE1C /* warning-icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warning-icon-60@2x.png"; sourceTree = "<group>"; };
 		E54B973D1FD184640075706C /* MyMemory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyMemory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E54B97401FD184640075706C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E54B97421FD184640075706C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +80,7 @@
 				E54B97401FD184640075706C /* AppDelegate.swift */,
 				E54B97421FD184640075706C /* ViewController.swift */,
 				E54B97441FD184640075706C /* Main.storyboard */,
+				E50308FE20E2A26300B3EE1C /* CSLogButton.swift */,
 				E54B974A1FD184640075706C /* Assets.xcassets */,
 				E54B974C1FD184640075706C /* LaunchScreen.storyboard */,
 				E54B974F1FD184640075706C /* Info.plist */,
@@ -88,6 +97,9 @@
 		E599E9E41FF11CBB004FB430 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E503090220E2A4F500B3EE1C /* memo-background@2x.png */,
+				E503090320E2A4F600B3EE1C /* warning-icon-60@2x.png */,
+				E503090020E2A35D00B3EE1C /* button-bg.png */,
 				E599E9E21FF11CB6004FB430 /* fountainpen@2x.png */,
 			);
 			path = Resources;
@@ -153,9 +165,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E54B974E1FD184640075706C /* LaunchScreen.storyboard in Resources */,
+				E503090120E2A35D00B3EE1C /* button-bg.png in Resources */,
 				E54B974B1FD184640075706C /* Assets.xcassets in Resources */,
 				E599E9E31FF11CB6004FB430 /* fountainpen@2x.png in Resources */,
+				E503090420E2A4F600B3EE1C /* memo-background@2x.png in Resources */,
 				E54B97461FD184640075706C /* Main.storyboard in Resources */,
+				E503090520E2A4F600B3EE1C /* warning-icon-60@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,6 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E50308FF20E2A26300B3EE1C /* CSLogButton.swift in Sources */,
 				E5CF24691FD19FF000910C8A /* MemoCell.swift in Sources */,
 				E5CF246B1FD1A06400910C8A /* MemoData.swift in Sources */,
 				E54B97491FD184640075706C /* MyMemory.xcdatamodeld in Sources */,
