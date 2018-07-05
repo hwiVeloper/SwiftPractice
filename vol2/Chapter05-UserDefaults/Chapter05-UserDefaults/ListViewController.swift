@@ -22,6 +22,27 @@ class ListViewController: UITableViewController {
         self.married.isOn = plist.bool(forKey: "married")
     }
     
+    // 이름값 레이블 탭 했을 때 제스쳐
+    @IBAction func edit(_ sender: UITapGestureRecognizer) {
+        let alert = UIAlertController(title: nil, message: "이름을 입력하세요.", preferredStyle: .alert)
+        
+        alert.addTextField() {
+            $0.text = self.name.text
+        }
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { (_) in
+            let value = alert.textFields?[0].text
+            
+            let plist = UserDefaults.standard
+            plist.set(value, forKey: "name")
+            plist.synchronize()
+            
+            self.name.text = value
+        })
+        
+        self.present(alert, animated: false, completion: nil)
+    }
+    
     @IBAction func changeGender(_ sender: UISegmentedControl) {
         let value = sender.selectedSegmentIndex // 0 = man, 1 = woman
         
@@ -41,6 +62,7 @@ class ListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        /*
         // 이름 row 를 클릭했을 경우
         if indexPath.row == 0 {
             // 입력 가능한 알림창을 띄운다.
@@ -64,5 +86,6 @@ class ListViewController: UITableViewController {
             //알림창을 띄운다.
             self.present(alert, animated: false, completion: nil)
         }
+        */
     }
 }

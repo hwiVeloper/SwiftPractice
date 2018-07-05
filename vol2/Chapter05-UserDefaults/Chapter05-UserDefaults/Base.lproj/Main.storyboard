@@ -34,12 +34,16 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="홍길동" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDO-yg-5Pw">
-                                                    <rect key="frame" x="314" y="11" width="45" height="21"/>
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="홍길동" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDO-yg-5Pw">
+                                                    <rect key="frame" x="236" y="11" width="123" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <connections>
+                                                        <outletCollection property="gestureRecognizers" destination="oDW-QB-CXJ" appends="YES" id="8bU-oB-sfn"/>
+                                                    </connections>
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -106,14 +110,20 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="사용자 정보" id="fXk-63-BUl"/>
                     <connections>
+                        <outlet property="edit" destination="oDW-QB-CXJ" id="0PW-yq-rC9"/>
                         <outlet property="gender" destination="M3P-Ix-e2W" id="5lo-nT-Yyt"/>
                         <outlet property="married" destination="acb-b4-OJ0" id="hOg-CP-NmL"/>
                         <outlet property="name" destination="wDO-yg-5Pw" id="ybN-Vi-33z"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UKG-Hp-FmG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="oDW-QB-CXJ">
+                    <connections>
+                        <action selector="edit:" destination="QRI-k5-ho5" id="QcP-1l-E6s"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="986" y="-30"/>
+            <point key="canvasLocation" x="984.79999999999995" y="-30.134932533733135"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iMT-2p-3dV">
