@@ -110,7 +110,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="사용자 정보" id="fXk-63-BUl"/>
                     <connections>
-                        <outlet property="edit" destination="oDW-QB-CXJ" id="0PW-yq-rC9"/>
                         <outlet property="gender" destination="M3P-Ix-e2W" id="5lo-nT-Yyt"/>
                         <outlet property="married" destination="acb-b4-OJ0" id="hOg-CP-NmL"/>
                         <outlet property="name" destination="wDO-yg-5Pw" id="ybN-Vi-33z"/>
