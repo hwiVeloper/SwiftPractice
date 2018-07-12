@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E5222E4E20F4E968006FADC3 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5222E4D20F4E968006FADC3 /* ListViewController.swift */; };
+		E5222E5020F7905E006FADC3 /* UserInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = E5222E4F20F7905E006FADC3 /* UserInfo.plist */; };
 		E56CCCD920EE7EB90010E5A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CCCD820EE7EB90010E5A0 /* AppDelegate.swift */; };
 		E56CCCDB20EE7EB90010E5A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56CCCDA20EE7EB90010E5A0 /* ViewController.swift */; };
 		E56CCCDE20EE7EB90010E5A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E56CCCDC20EE7EB90010E5A0 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		E5222E4D20F4E968006FADC3 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		E5222E4F20F7905E006FADC3 /* UserInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = UserInfo.plist; sourceTree = "<group>"; };
 		E56CCCD520EE7EB90010E5A0 /* Chapter05-CustomPlist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Chapter05-CustomPlist.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E56CCCD820EE7EB90010E5A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E56CCCDA20EE7EB90010E5A0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				E56CCCE120EE7EB90010E5A0 /* LaunchScreen.storyboard */,
 				E56CCCE420EE7EB90010E5A0 /* Info.plist */,
 				E5222E4D20F4E968006FADC3 /* ListViewController.swift */,
+				E5222E4F20F7905E006FADC3 /* UserInfo.plist */,
 			);
 			path = "Chapter05-CustomPlist";
 			sourceTree = "<group>";
@@ -129,6 +132,7 @@
 				E56CCCE320EE7EB90010E5A0 /* LaunchScreen.storyboard in Resources */,
 				E56CCCE020EE7EB90010E5A0 /* Assets.xcassets in Resources */,
 				E56CCCDE20EE7EB90010E5A0 /* Main.storyboard in Resources */,
+				E5222E5020F7905E006FADC3 /* UserInfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
