@@ -13,7 +13,7 @@
 		E5222E7F20FCED29006FADC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5222E7E20FCED29006FADC3 /* Assets.xcassets */; };
 		E5222E8220FCED29006FADC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5222E8020FCED29006FADC3 /* LaunchScreen.storyboard */; };
 		E5222E8B20FCED5E006FADC3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E5222E8A20FCED5E006FADC3 /* libsqlite3.tbd */; };
-		E5222E9020FCF42E006FADC3 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E5222E8F20FCF42E006FADC3 /* db.sqlite */; };
+		E5222E9820FCF5BC006FADC3 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E5222E9720FCF5BC006FADC3 /* db.sqlite */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +26,7 @@
 		E5222E8320FCED29006FADC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5222E8A20FCED5E006FADC3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		E5222E8C20FCED97006FADC3 /* Chapter06-SQLite3-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Chapter06-SQLite3-Bridging-Header.h"; sourceTree = "<group>"; };
-		E5222E8F20FCF42E006FADC3 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = db.sqlite; path = "../../Chapter06-SQLiteEx/db.sqlite"; sourceTree = "<group>"; };
+		E5222E9720FCF5BC006FADC3 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = db.sqlite; path = "../../Chapter06-SQLiteEx/db.sqlite"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +61,7 @@
 		E5222E7620FCED29006FADC3 /* Chapter06-SQLite3 */ = {
 			isa = PBXGroup;
 			children = (
-				E5222E8F20FCF42E006FADC3 /* db.sqlite */,
+				E5222E9720FCF5BC006FADC3 /* db.sqlite */,
 				E5222E7720FCED29006FADC3 /* AppDelegate.swift */,
 				E5222E7920FCED29006FADC3 /* ViewController.swift */,
 				E5222E7B20FCED29006FADC3 /* Main.storyboard */,
@@ -142,7 +142,7 @@
 			files = (
 				E5222E8220FCED29006FADC3 /* LaunchScreen.storyboard in Resources */,
 				E5222E7F20FCED29006FADC3 /* Assets.xcassets in Resources */,
-				E5222E9020FCF42E006FADC3 /* db.sqlite in Resources */,
+				E5222E9820FCF5BC006FADC3 /* db.sqlite in Resources */,
 				E5222E7D20FCED29006FADC3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
