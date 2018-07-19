@@ -21,6 +21,7 @@
 		E5222ECD20FE44D6006FADC3 /* EmployeeListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5222ECC20FE44D6006FADC3 /* EmployeeListVC.swift */; };
 		E5222ECF20FE45EB006FADC3 /* hr.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = E5222ECE20FE45EA006FADC3 /* hr.sqlite */; };
 		E5222ED120FE4605006FADC3 /* DepartmentDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5222ED020FE4605006FADC3 /* DepartmentDAO.swift */; };
+		E5222ED32100D58C006FADC3 /* EmployeeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5222ED22100D58C006FADC3 /* EmployeeDAO.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		E5222ECC20FE44D6006FADC3 /* EmployeeListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeListVC.swift; sourceTree = "<group>"; };
 		E5222ECE20FE45EA006FADC3 /* hr.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = hr.sqlite; sourceTree = "<group>"; };
 		E5222ED020FE4605006FADC3 /* DepartmentDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentDAO.swift; sourceTree = "<group>"; };
+		E5222ED22100D58C006FADC3 /* EmployeeDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeDAO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				E5222ECA20FE44C4006FADC3 /* DepartmentListVC.swift */,
 				E5222ECC20FE44D6006FADC3 /* EmployeeListVC.swift */,
 				E5222ED020FE4605006FADC3 /* DepartmentDAO.swift */,
+				E5222ED22100D58C006FADC3 /* EmployeeDAO.swift */,
 			);
 			path = "Chapter06-HR";
 			sourceTree = "<group>";
@@ -188,6 +191,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5222EA820FE3EE5006FADC3 /* ViewController.swift in Sources */,
+				E5222ED32100D58C006FADC3 /* EmployeeDAO.swift in Sources */,
 				E5222EC420FE419F006FADC3 /* FMDatabasePool.m in Sources */,
 				E5222ED120FE4605006FADC3 /* DepartmentDAO.swift in Sources */,
 				E5222ECB20FE44C4006FADC3 /* DepartmentListVC.swift in Sources */,
