@@ -10,6 +10,12 @@ import Foundation
 import UIKit
 
 class EmployeeListVC: UITableViewController {
+    // 새로고침 컨트롤에 들어갈 이미지 뷰
+    var loadingImg: UIImageView!
+    
+    // 임계점에 도달했을 때 나타날 배경 뷰, 노란 원 형태
+    var bgCircle: UIView!
+    
     // 데이터 소스를 저장할 멤버 변수
     var empList: [EmployeeVO]!
     // SQLite 처리를 담당할 DAO 클래스
@@ -30,6 +36,27 @@ class EmployeeListVC: UITableViewController {
     override func viewDidLoad() {
         self.empList = self.empDAO.find()
         self.initUI()
+        
+        // 당겨서 새로고침 기능
+        self.refreshControl = UIRefreshControl()
+        //self.refreshControl?.attributedTitle = NSAttributedString(string: "당겨서 새로고침")
+        
+        self.refreshControl?.addTarget(self, action: #selector(pullToRefresh(_:)), for: .valueChanged)
+        
+        self.loadingImg = UIImageView(image: UIImage(named: "refresh"))
+        self.loadingImg.center.x = (self.refreshControl?.frame.width)! / 2
+        
+        self.refreshControl?.tintColor = UIColor.clear
+        self.refreshControl?.addSubview(self.loadingImg)
+        
+        // 배경 뷰 초기화 및 노란 원 형태를 위한 속성 설정
+        self.bgCircle = UIView()
+        self.bgCircle.backgroundColor = UIColor.yellow
+        self.bgCircle.center.x = (self.refreshControl?.frame.width)! / 2
+        
+        // 배경 뷰를 refreshControl 객체에 추가 후 로딩 이미지를 제일 위로 올림
+        self.refreshControl?.addSubview(self.bgCircle)
+        self.refreshControl?.bringSubview(toFront: self.loadingImg)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -107,5 +134,47 @@ class EmployeeListVC: UITableViewController {
             self.empList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
+    }
+    
+    @objc func pullToRefresh(_ sender: Any) {
+        // 새로고침 시 갱신되어야 할 내용들
+        self.empList = self.empDAO.find()
+        self.tableView.reloadData()
+        
+        // 당겨서 새로고침 기능 종료
+        self.refreshControl?.endRefreshing()
+        
+        // 노란 원이 로딩 이미지를 중심으로 커지는 애니메이션
+        let distance = max(0.0, -(self.refreshControl?.frame.origin.y)!)
+        UIView.animate(withDuration: 0.5) {
+            self.bgCircle.frame.size.width = 80
+            self.bgCircle.frame.size.height = 80
+            self.bgCircle.center.x = (self.refreshControl?.frame.width)! / 2
+            self.bgCircle.center.y = distance / 2
+            self.bgCircle.layer.cornerRadius = (self.bgCircle?.frame.size.width)! / 2
+        }
+    }
+    
+    // 스크롤이 발생할 때 이벤트
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // 당긴 거리
+        let distance = max(0.0, -(self.refreshControl?.frame.origin.y)!)
+        
+        // center.y 좌표를 당긴 거리만큼 수정
+        self.loadingImg.center.y = distance / 2
+        
+        // 당긴 거리를 회전 각도로 반환하여 로딩 이미지에 설정한다.
+        let ts = CGAffineTransform(rotationAngle: CGFloat(distance / 20))
+        self.loadingImg.transform = ts
+        
+        // 배경 뷰의 중심 좌표 설정
+        self.bgCircle.center.y = distance / 2
+    }
+    
+    // 스크롤 뷰 드래그가 끝날 때 이벤트
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        // 노란원 초기화
+        self.bgCircle.frame.size.width = 0
+        self.bgCircle.frame.size.height = 0
     }
 }

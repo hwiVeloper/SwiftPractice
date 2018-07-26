@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class DepartmentInfoVC: UITableViewController {
+class DepartmentInfoVC: UITableViewController {    
     // 부서 정보를 저장할 데이터 타입
     typealias DepartRecord = (departCd: Int, departTitle: String, departAddr: String)
     
