@@ -32,6 +32,10 @@ class ListVC: UITableViewController {
         // 3. 요청 객체 생성
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Board")
         
+        // 3-1. 정렬 속성 설정
+        let sort = NSSortDescriptor(key: "regdate", ascending: false)
+        fetchRequest.sortDescriptors = [sort]
+        
         // 4. 데이터 가져오기
         let result = try! context.fetch(fetchRequest)
         
@@ -68,9 +72,17 @@ class ListVC: UITableViewController {
         object.setValue(contents, forKey: "contents")
         object.setValue(Date(), forKey: "regdate")
         
+        // Log 관리 객체 생성 및 어트리뷰트에 값 대입
+        let logObject = NSEntityDescription.insertNewObject(forEntityName: "Log", into: context) as! LogMO
+        logObject.regdate = Date()
+        logObject.type = LogType.create.rawValue
+        // 게시물 객체의 logs 속성에 새로 생성된 로그 객체 추가
+        (object as! BoardMO).addToLogs(logObject)
+        
         do {
             try context.save()
-            self.list.append(object)
+            //self.list.append(object)
+            self.list.insert(object, at: 0)
             return true
         } catch {
             context.rollback()
@@ -104,6 +116,7 @@ class ListVC: UITableViewController {
         
         do {
             try context.save()
+            self.list = self.fetch()
             return true
         } catch {
             context.rollback()
@@ -160,7 +173,16 @@ class ListVC: UITableViewController {
             }
             
             if self.edit(object: object, title: title, contents: contents) == true {
-                self.tableView.reloadData()
+                // self.tableView.reloadData()
+                
+                // 추가 1) 셀의 내용을 직접 수정한다.
+                let cell = self.tableView.cellForRow(at: indexPath)
+                cell?.textLabel?.text = title
+                cell?.detailTextLabel?.text = contents
+                
+                // 추가 2) 수정된 셀을 첫 번째 행으로 이동시킨다.
+                let firstIndexPath = IndexPath(item: 0, section: 0)
+                self.tableView.moveRow(at: indexPath, to: firstIndexPath)
             }
         })
         

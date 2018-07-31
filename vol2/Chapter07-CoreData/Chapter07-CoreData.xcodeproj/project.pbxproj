@@ -14,6 +14,7 @@
 		E5638833210F4C5100F84E78 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5638832210F4C5100F84E78 /* Assets.xcassets */; };
 		E5638836210F4C5100F84E78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5638834210F4C5100F84E78 /* LaunchScreen.storyboard */; };
 		E563883E210F5E7600F84E78 /* ListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E563883D210F5E7600F84E78 /* ListVC.swift */; };
+		E5F522212110AF2D00B8E5C7 /* LogVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F522202110AF2D00B8E5C7 /* LogVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		E5638835210F4C5100F84E78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E5638837210F4C5100F84E78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E563883D210F5E7600F84E78 /* ListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListVC.swift; sourceTree = "<group>"; };
+		E5F522202110AF2D00B8E5C7 /* LogVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				E5638834210F4C5100F84E78 /* LaunchScreen.storyboard */,
 				E5638837210F4C5100F84E78 /* Info.plist */,
 				E563882F210F4C4F00F84E78 /* Chapter07_CoreData.xcdatamodeld */,
+				E5F522202110AF2D00B8E5C7 /* LogVC.swift */,
 			);
 			path = "Chapter07-CoreData";
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 			files = (
 				E563883E210F5E7600F84E78 /* ListVC.swift in Sources */,
 				E563882B210F4C4F00F84E78 /* ViewController.swift in Sources */,
+				E5F522212110AF2D00B8E5C7 /* LogVC.swift in Sources */,
 				E5638829210F4C4F00F84E78 /* AppDelegate.swift in Sources */,
 				E5638831210F4C4F00F84E78 /* Chapter07_CoreData.xcdatamodeld in Sources */,
 			);
