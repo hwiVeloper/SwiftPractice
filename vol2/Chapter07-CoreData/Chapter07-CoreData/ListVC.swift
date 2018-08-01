@@ -114,6 +114,14 @@ class ListVC: UITableViewController {
         object.setValue(contents, forKey: "contents")
         object.setValue(Date(), forKey: "regdate")
         
+        // Log 관리 객체 생성 및 어트리뷰트 값 대입
+        let logObject = NSEntityDescription.insertNewObject(forEntityName: "Log", into: context) as! LogMO
+        logObject.regdate = Date()
+        logObject.type = LogType.edit.rawValue
+        
+        // 게시글 객체의 logs 속성에 새로 생성된 로그 객체 추가
+        (object as! BoardMO).addToLogs(logObject)
+        
         do {
             try context.save()
             self.list = self.fetch()
@@ -187,5 +195,13 @@ class ListVC: UITableViewController {
         })
         
         self.present(alert, animated: false)
+    }
+    
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        let object = self.list[indexPath.row]
+        let uvc = self.storyboard?.instantiateViewController(withIdentifier: "LogVC") as! LogVC
+        uvc.board = object as! BoardMO
+        
+        self.show(uvc, sender: self)
     }
 }
