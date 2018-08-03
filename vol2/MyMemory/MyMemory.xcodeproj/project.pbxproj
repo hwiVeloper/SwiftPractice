@@ -30,6 +30,7 @@
 		E54B97491FD184640075706C /* MyMemory.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E54B97471FD184640075706C /* MyMemory.xcdatamodeld */; };
 		E54B974B1FD184640075706C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E54B974A1FD184640075706C /* Assets.xcassets */; };
 		E54B974E1FD184640075706C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E54B974C1FD184640075706C /* LaunchScreen.storyboard */; };
+		E57AAB212114BBCE00DD65A8 /* MemoDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57AAB202114BBCE00DD65A8 /* MemoDAO.swift */; };
 		E5935FD820EA580100D679B6 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E5935FD720EA580100D679B6 /* SWRevealViewController.m */; };
 		E5935FE120EA584900D679B6 /* account@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E5935FD920EA584800D679B6 /* account@2x.jpg */; };
 		E5935FE220EA584900D679B6 /* icon05.png in Resources */ = {isa = PBXBuildFile; fileRef = E5935FDA20EA584800D679B6 /* icon05.png */; };
@@ -76,6 +77,7 @@
 		E54B974A1FD184640075706C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E54B974D1FD184640075706C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E54B974F1FD184640075706C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E57AAB202114BBCE00DD65A8 /* MemoDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDAO.swift; sourceTree = "<group>"; };
 		E5935FD520EA57FF00D679B6 /* MyMemory-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MyMemory-Bridging-Header.h"; sourceTree = "<group>"; };
 		E5935FD620EA580000D679B6 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		E5935FD720EA580100D679B6 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				E5222E6120FA479C006FADC3 /* UserInfoManager.swift */,
 				E5222E6720FCD080006FADC3 /* TutorialContentsVC.swift */,
 				E5222E6920FCD234006FADC3 /* TutorialMasterVC.swift */,
+				E57AAB202114BBCE00DD65A8 /* MemoDAO.swift */,
 			);
 			path = MyMemory;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				E5CF24671FD19FD800910C8A /* MemoReadVC.swift in Sources */,
 				E54B97431FD184640075706C /* ViewController.swift in Sources */,
 				E5222E6A20FCD234006FADC3 /* TutorialMasterVC.swift in Sources */,
+				E57AAB212114BBCE00DD65A8 /* MemoDAO.swift in Sources */,
 				E5935FD820EA580100D679B6 /* SWRevealViewController.m in Sources */,
 				E5CF245F1FD19F2700910C8A /* MemoListVC.swift in Sources */,
 				E5222E6220FA479C006FADC3 /* UserInfoManager.swift in Sources */,

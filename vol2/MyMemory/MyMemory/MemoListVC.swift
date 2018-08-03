@@ -8,12 +8,19 @@
 
 import UIKit
 
-class MemoListVC: UITableViewController {
+class MemoListVC: UITableViewController, UISearchBarDelegate {
+    @IBOutlet var searchBar: UISearchBar!
+    
+    lazy var dao = MemoDAO()
+    
     // 앱 델리게이트 객체의 참조 정보를 읽어온다.
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     // Chapter04 추가
     override func viewDidLoad() {
+        // 검색창에서 엔터키가 활성화되도록 처리
+        searchBar.enablesReturnKeyAutomatically = false
+        
         // SWRevealViewController 라이브러리의 revealViewController 객체를 읽어온다.
         if let revealVC = self.revealViewController() {
             // 바 버튼 아이템 객체를 정의한다.
@@ -38,7 +45,11 @@ class MemoListVC: UITableViewController {
             self.present(vc!, animated: false)
             return
         }
+        
+        self.appDelegate.memolist = self.dao.fetch()
+        
         self.tableView.reloadData()
+        
     }
     
     // 테이블 행의 개수를 정하는 메서드
@@ -85,5 +96,25 @@ class MemoListVC: UITableViewController {
         // 3. 값을 전달한 다음, 상세 화면으로 이동한다.
         vc.param = row
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        return .delete
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let data = self.appDelegate.memolist[indexPath.row]
+        
+        if dao.delete(data.objectID!) {
+            self.appDelegate.memolist.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let keyword = searchBar.text // 검색바에 입력된 텍스트
+        
+        self.appDelegate.memolist = self.dao.fetch(keyword: keyword)
+        self.tableView.reloadData()
     }
 }
