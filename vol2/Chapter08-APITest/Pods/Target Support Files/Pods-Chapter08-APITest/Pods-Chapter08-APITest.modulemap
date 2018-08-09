@@ -1,0 +1,6 @@
+framework module Pods_Chapter08_APITest {
+  umbrella header "Pods-Chapter08-APITest-umbrella.h"
+
+  export *
+  module * { export * }
+}
