@@ -1,7 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '11.0'
+platform :ios, '10.0'
 use_frameworks!
 
-target 'Chapter08-APITest' do
+target 'MyMemory' do
     pod 'Alamofire', '~> 4.7'
 end
