@@ -21,6 +21,9 @@ class JoinVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
     var fieldPassword: UITextField!
     var fieldName: UITextField!
     
+    // API 호출 상태값을 관리할 변수
+    var isCalling = false
+    
     override func viewDidLoad() {
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -85,6 +88,13 @@ class JoinVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
     }
     
     @IBAction func submit(_ sender: Any) {
+        if self.isCalling == true {
+            self.alert("진행 중입니다. 잠시만 기다려주세요.")
+            return
+        } else {
+            self.isCalling = true
+        }
+        
         self.indicatorView.startAnimating()
         
         // 전달할 값 준비
@@ -107,6 +117,7 @@ class JoinVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
             
             // JSON 형식으로 잘 전달했는지 확인
             guard let jsonObject = res.result.value as? [String: Any] else {
+                self.isCalling = false
                 self.alert("서버 호출 과정에서 오류가 발생했습니다")
                 return
             }
@@ -114,8 +125,11 @@ class JoinVC: UIViewController, UITableViewDataSource, UITableViewDelegate,
             // 응답코드확인 (0은 성공)
             let resultCode = jsonObject["result_code"] as! Int
             if resultCode == 0 {
-                self.alert("가입이 완료되었습니다.")
+                self.alert("가입이 완료되었습니다.") {
+                    self.performSegue(withIdentifier: "backProfileVC", sender: self)
+                }
             } else {
+                self.isCalling = false
                 let errorMsg = jsonObject["error_msg"] as! String
                 self.alert("오류 발생 : \(errorMsg)")
             }
