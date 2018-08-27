@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
 struct UserInfoKey {
     // 저장에 사용할 키
@@ -81,18 +82,41 @@ class UserInfoManager {
         }
     }
     
-    func login(account: String, passwd: String) -> Bool {
-        // 이 부분은 추후 서버 연동 코드로 대체될 것
-        if account.isEqual("hwiveloper@github.com") && passwd.isEqual("1234") {
-            let ud = UserDefaults.standard
-            ud.set(100, forKey: UserInfoKey.loginId)
-            ud.set(account, forKey: UserInfoKey.account)
-            ud.set("휘벨로퍼", forKey: UserInfoKey.name)
-            ud.synchronize()
-            return true
-        } else {
-            return false
+    func login(account: String, passwd: String, success: (()->Void)? = nil, fail: ((String)->Void)? = nil) -> Bool {
+        let url = "http://swiftapi.rubypaper.co.kr:2029/userAccount/login"
+        let param: Parameters = [
+            "account": account,
+            "passwd" : passwd
+        ]
+        
+        let call = Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default)
+        
+        call.responseJSON { res in
+            guard let jsonObject = res.result.value as? NSDictionary else {
+                fail?("잘못된 응답 형식입니다:\(res.result.value!)")
+                return
+            }
+            
+            let resultCode = jsonObject["result_code"] as! Int
+            if resultCode == 0 {
+                let user = jsonObject["user_info"] as! NSDictionary
+                
+                self.loginId = user["user_id"] as! Int
+                self.account = user["account"] as? String
+                self.name = user["name"] as? String
+                
+                if let path = user["profile_path"] as? String {
+                    if let imageData = try? Data(contentsOf: URL(string: path)!) {
+                        self.profile = UIImage(data: imageData)
+                    }
+                }
+                success?()
+            } else {
+                let msg = (jsonObject["error_msg"] as? String) ?? "로그인이 싪패했습니다."
+                fail?(msg)
+            }
         }
+        return true
     }
     
     func logout() -> Bool {
