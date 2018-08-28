@@ -110,6 +110,17 @@ class UserInfoManager {
                         self.profile = UIImage(data: imageData)
                     }
                 }
+                
+                // => 추가
+                // 토큰 정보 추출
+                let accessToken = jsonObject["access_token"] as! String
+                let refreshToken = jsonObject["refresh_token"] as! String
+                
+                // 토큰 정보 저장
+                let tk = TokenUtils()
+                tk.save("kr.co.rubypaper.MyMemory", account: "accessToken", value: accessToken)
+                tk.save("kr.co.rubypaper.MyMemory", account: "refreshToken", value: refreshToken)
+                
                 success?()
             } else {
                 let msg = (jsonObject["error_msg"] as? String) ?? "로그인이 싪패했습니다."
