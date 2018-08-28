@@ -7,6 +7,12 @@
 //
 
 import Foundation
+import Security
+import Alamofire
+
+class TokenUtils {
+    
+}
 
 extension UIViewController {
     var tutorialSB: UIStoryboard {
