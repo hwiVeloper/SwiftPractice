@@ -20,6 +20,11 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     let uinfo = UserInfoManager() // 개인 정보 관리 매니저
     
+    override func viewWillAppear(_ animated: Bool) {
+        // 토큰 인증 여부 체크
+        self.tokenValidate()
+    }
+    
     override func viewDidLoad() {
         self.navigationItem.title = "프로필"
         
@@ -328,14 +333,47 @@ extension ProfileVC {
         let deviceAuth = LAPolicy.deviceOwnerAuthenticationWithBiometrics // 인증 정책
         
         // 로컬 인증이 사용가능한지 여부 확인
-        if context.evaluatePolicy(deviceAuth, localizedReason: msg) { (success, e) in
-            if success { // 인증 성공
-                self.refresh() // 토큰 갱신
-            } else { // 인증 실패
-                // 실패 대응 로직
+        if context.canEvaluatePolicy(deviceAuth, error: &error) {
+            context.evaluatePolicy(deviceAuth, localizedReason: msg) { (success, e) in
+                if success { // 인증 성공
+                    self.refresh() // 토큰 갱신
+                } else { // 인증 실패
+                    // 실패 대응 로직
+                    print((e?.localizedDescription)!)
+                    
+                    switch (e!._code) {
+                        case LAError.systemCancel.rawValue:
+                            self.alert("시스템에 의해 인증이 취소되었습니다.")
+                        case LAError.userCancel.rawValue:
+                            self.alert("사용자에 의해 인증이 취소되었습니다.") {
+                                self.commonLogout(true)
+                            }
+                        case LAError.userFallback.rawValue:
+                            OperationQueue.main.addOperation {
+                                self.commonLogout(true)
+                            }
+                        default:
+                            OperationQueue.main.addOperation {
+                                self.commonLogout(true)
+                            }
+                    }
+                }
             }
         } else { // 인증창이 실행되지 못한 경우
             // 인증창 실행 불가 원인에 대한 대응 로직
+            print(error!.localizedDescription)
+            switch (error!.code) {
+            case LAError.touchIDNotEnrolled.rawValue:
+                print("터치 아이디가 등록되어 있지 않습니다.")
+            case LAError.passcodeNotSet.rawValue:
+                print("패스 코드가 설정되어 있지 않습니다.")
+            default: // LAError.touchIDNotAvailable 포함
+                print("터치 아이디를 사용할 수 없습니다.")
+            }
+            
+            OperationQueue.main.addOperation {
+                self.commonLogout(true)
+            }
         }
     }
     
@@ -352,7 +390,7 @@ extension ProfileVC {
         
         let url = "http://swiftapi.rubypaper.co.kr:2029/userAccount/refresh"
         let refresh = Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: header)
-        refresh.responseJSO { res in
+        refresh.responseJSON { res in
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             guard let jsonObject = res.result.value as? NSDictionary else {
@@ -366,6 +404,9 @@ extension ProfileVC {
                 tk.save("kr.co.rubypaper.MyMemory", account: "accessToken", value: accessToken)
             } else {
                 self.alert("인증이 만료되었으므로 다시 로그인해야 합니다.")
+                OperationQueue.main.addOperation {
+                    self.commonLogout()
+                }
             }
         }
     }
