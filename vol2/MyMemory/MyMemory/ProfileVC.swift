@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import Alamofire
+import LocalAuthentication
 
 class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         UIImagePickerControllerDelegate, UINavigationControllerDelegate {
@@ -163,7 +165,15 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         
         alert.addAction(UIAlertAction(title: "취소", style: .cancel))
         alert.addAction(UIAlertAction(title: "확인", style: .destructive) { (_) in
-            if self.uinfo.logout() {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+//            if self.uinfo.logout() {
+//                self.tv.reloadData()
+//                self.profileImage.image = self.uinfo.profile
+//                self.drawBtn()
+//            }
+            self.uinfo.logout() {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                
                 self.tv.reloadData()
                 self.profileImage.image = self.uinfo.profile
                 self.drawBtn()
@@ -249,17 +259,127 @@ class ProfileVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     // 이미지를 선택하면 이 메소드가 자동으로 호출된다.
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+//        if let img = info[UIImagePickerControllerEditedImage] as? UIImage {
+//            self.uinfo.profile = img
+//            self.profileImage.image = img
+//        }
+//
+//        // 이 구문을 누락하면 이미지 피커 컨트롤러 창은 닫히지 않는다.
+//        picker.dismiss(animated: true)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         if let img = info[UIImagePickerControllerEditedImage] as? UIImage {
-            self.uinfo.profile = img
-            self.profileImage.image = img
+            self.uinfo.newProfile(img, success: {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                self.profileImage.image = img
+            }, fail: { msg in
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                self.alert(msg)
+            })
         }
-        
-        // 이 구문을 누락하면 이미지 피커 컨트롤러 창은 닫히지 않는다.
         picker.dismiss(animated: true)
     }
     
     @IBAction func backProfileVC(_ segue: UIStoryboardSegue) {
         // 프로필 화면으로 돌아오는 segue를 생성
         // 메소드 내에서는 아무 동작 하지 않는다.
+    }
+}
+
+extension ProfileVC {
+    // 토큰 인증 메소드
+    func tokenValidate() {
+        // 응답 캐시를 사용하지 않도록
+        URLCache.shared.removeAllCachedResponses()
+        
+        // 키 체인에 액세스 토큰이 없을 경우 유효성 검증을 하지 않는다.
+        let tk = TokenUtils()
+        guard let header = tk.getAuthorizationHeader() else {
+            return
+        }
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        // tokenValidate API 호출
+        let url = "http://swiftapi.rubypaper.co.kr:2029/userAccount/tokenValidate"
+        let validate = Alamofire.request(url, method: .post, encoding: JSONEncoding.default, headers: header)
+        
+        validate.responseJSON { res in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+            print(res.result.value!) // 응답 결과 확인
+            guard let jsonObject = res.result.value as? NSDictionary else {
+                self.alert("잘못된 응답입니다.")
+                return
+            }
+            // 응답 결과 처리
+            let resultCode = jsonObject["result_code"] as! Int
+            if resultCode != 0 {
+                self.touchID()
+            }
+        }
+    }
+    
+    // 터치 아이디 인증 메소드
+    func touchID() {
+        let context = LAContext()
+        
+        var error: NSError?
+        let msg = "인증이 필요합니다."
+        let deviceAuth = LAPolicy.deviceOwnerAuthenticationWithBiometrics // 인증 정책
+        
+        // 로컬 인증이 사용가능한지 여부 확인
+        if context.evaluatePolicy(deviceAuth, localizedReason: msg) { (success, e) in
+            if success { // 인증 성공
+                self.refresh() // 토큰 갱신
+            } else { // 인증 실패
+                // 실패 대응 로직
+            }
+        } else { // 인증창이 실행되지 못한 경우
+            // 인증창 실행 불가 원인에 대한 대응 로직
+        }
+    }
+    
+    // 토큰 갱신 메소드
+    func refresh() {
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        // 인증 헤더
+        let tk = TokenUtils()
+        let header = tk.getAuthorizationHeader()
+        
+        let refreshToken = tk.load("kr.co.rubypaper.MyMemory", account: "refreshToken")
+        let param: Parameters = ["refreshToken" : refreshToken!]
+        
+        let url = "http://swiftapi.rubypaper.co.kr:2029/userAccount/refresh"
+        let refresh = Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: header)
+        refresh.responseJSO { res in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+            guard let jsonObject = res.result.value as? NSDictionary else {
+                self.alert("잘못된 응답입니다.")
+                return
+            }
+            
+            let resultCode = jsonObject["result_code"] as! Int
+            if resultCode == 0 {
+                let accessToken = jsonObject["access_token"] as! String
+                tk.save("kr.co.rubypaper.MyMemory", account: "accessToken", value: accessToken)
+            } else {
+                self.alert("인증이 만료되었으므로 다시 로그인해야 합니다.")
+            }
+        }
+    }
+    
+    func commonLogout(_ isLogin: Bool = false) {
+        let userInfo = UserInfoManager()
+        userInfo.localLogout()
+        
+        self.tv.reloadData()
+        self.profileImage.image = userInfo.profile
+        self.drawBtn()
+        
+        if isLogin {
+            self.doLogin(self)
+        }
     }
 }
